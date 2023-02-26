@@ -13,6 +13,15 @@ denon.on('connect', ()=> {
   const address = denon.socket.remoteAddress;
   const port = denon.socket.remotePort;
   cli.log(colors.green(`Successfully connected to ${address}:${port}`));
+
+  if (process.argv.length > 2) {
+    for (i = 2; i < process.argv.length; i++) {
+      cli.log(colors.blue('Sending command ' + process.argv[i]));
+      cli.execSync('command ' + process.argv[i]);
+    }
+  cli.log(colors.red('All commands sent... exiting'));
+  process.exit(0)
+  }
 });
 
 denon.on('error', err => {
