@@ -38,12 +38,10 @@ denon.on('data', buffer => {
 });
 
 cli
-  .localStorage('denon-remote-v1')
-  .history('denon-remote-v1')
   .delimiter('denon$')
   .show();
 
 setupToolCommands(cli, denon);
 setupDenonCommands(cli, denon);
 
-cli.execSync('connect');
+cli.execSync('connect 192.168.1.204');
